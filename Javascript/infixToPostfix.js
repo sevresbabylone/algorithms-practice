@@ -1,5 +1,5 @@
 var simpleExpression = '((3 + 4) + (5+ 8) + 6)' // => 43+82-/
-var quadraticFormula = '(-b+(b^2 - 4 * a * c)^(1/2) )2*a' // half of the quadratic formula, actually
+var quadraticFormula = '(-b+(b^2 - 4 * a * c)^(1/2) ) / 2*a' // half of the quadratic formula, actually
 
 // converts infix notation to postfix
 // if invalid, return null
