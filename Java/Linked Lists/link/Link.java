@@ -7,6 +7,6 @@ public class Link {
         iData = i;
     }
     public void displayLink () {
-        System.out.println("iData: " + iData);
+        System.out.println(iData);
     }
 }

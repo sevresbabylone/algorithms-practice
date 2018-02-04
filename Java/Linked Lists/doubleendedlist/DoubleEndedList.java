@@ -49,7 +49,7 @@ public class DoubleEndedList {
     }
 
     public void displayList() {
-        System.out.print("List ( first --> last): ");
+        System.out.println("List ( first --> last): ");
         Link current = first;
         while(current != null) {
             current.displayLink();
