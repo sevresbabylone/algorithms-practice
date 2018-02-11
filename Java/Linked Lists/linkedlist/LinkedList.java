@@ -68,4 +68,13 @@ public class LinkedList {
         }
         return current;
     }
+    public Link getFirst() {
+        return first;
+    }
+    public Link setFirst(Link newFirst) {
+        first = newFirst;
+    }
+    public ListIterator getIterator() {
+        return new ListIterator(this); // return iterator initialized with this list
+    }
 }
