@@ -72,7 +72,7 @@ public class LinkedList {
     public Link getFirst() {
         return first;
     }
-    public Link setFirst(Link newFirst) {
+    public void setFirst(Link newFirst) {
         first = newFirst;
     }
     public ListIterator getIterator() {
