@@ -2,6 +2,11 @@
 
 function Complex (real, imaginary) {
 // instance fields: per instance properties and values that hold the state of individual instances
+  if (isNaN(real) || isNaN(imaginary)) {
+    throw new TypeError()
+  }
+  this.r = real
+  this.i = imaginary
 }
 
 // instance methods: methods shared by all instances of the class which are invoked on individual instances
