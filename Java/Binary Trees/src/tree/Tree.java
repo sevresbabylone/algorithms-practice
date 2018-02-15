@@ -3,24 +3,39 @@ package tree;
 import node.Node;
 
 public class Tree {
-    private Node root;
-
-    public Node find(int key) { // efficiency O(logN)
-        Node current = root;
-        while (current.iData != key && current != null) {
-            if (key >= current.iData) {
-                current = current.leftChild;
-            }
-            else {
-                current = current.rightChild;
-            }
+    public Node root;
+    public Tree() {
+        root = null;
+    }
+    public Node find(Node root, int key) { // efficiency O(logN)
+        if (root == null || root.iData == key) {
+            return root;
         }
-        return current;
+        if (root.iData > key) {
+            return find(root.leftChild, key);
+        }
+        else {
+            return find(root.rightChild, key);
+        }
     }
     public void insert(int iData, double fData) {
-
+        Node newNode = new Node(iData, fData);
+        root = insertRec(newNode, root);
     }
-    public void delete(int key) {
-
+    public Node insertRec(Node newNode, Node root) {
+        if (root == null) {
+            root = newNode;
+            return root;
+        }
+        if (newNode.iData < root.iData) {
+            root.leftChild = insertRec(newNode, root.leftChild);
+        }
+        else {
+            root.rightChild = insertRec(newNode, root.rightChild);
+        }
+        return root;
     }
+//    public void delete(int key) {
+//
+//    }
 }
