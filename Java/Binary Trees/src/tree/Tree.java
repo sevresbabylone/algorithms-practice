@@ -3,19 +3,24 @@ package tree;
 import node.Node;
 
 public class Tree {
-    public Node root;
+    private Node root;
     public Tree() {
         root = null;
     }
-    public Node find(Node root, int key) { // efficiency O(logN)
-        if (root == null || root.iData == key) {
+
+    public Node getRoot() {
+        return root;
+    }
+
+    public Node find(Node root, int key) {
+        if (root == null || root.getiData() == key) {
             return root;
         }
-        if (root.iData > key) {
-            return find(root.leftChild, key);
+        if (root.getiData() > key) {
+            return find(root.getLeftChild(), key);
         }
         else {
-            return find(root.rightChild, key);
+            return find(root.getRightChild(), key);
         }
     }
     public void insert(int iData, double fData) {
@@ -27,11 +32,11 @@ public class Tree {
             root = newNode;
             return root;
         }
-        if (newNode.iData < root.iData) {
-            root.leftChild = insertRec(newNode, root.leftChild);
+        if (newNode.getiData() < root.getiData()) {
+            root.setLeftChild(insertRec(newNode, root.getLeftChild()));
         }
         else {
-            root.rightChild = insertRec(newNode, root.rightChild);
+            root.setRightChild(insertRec(newNode, root.getRightChild()));
         }
         return root;
     }
