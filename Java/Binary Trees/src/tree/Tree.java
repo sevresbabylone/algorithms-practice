@@ -27,7 +27,7 @@ public class Tree {
         Node newNode = new Node(iData, fData);
         root = insertRec(newNode, root);
     }
-    public Node insertRec(Node newNode, Node root) {
+    private Node insertRec(Node newNode, Node root) {
         if (root == null) {
             root = newNode;
             return root;
@@ -40,7 +40,17 @@ public class Tree {
         }
         return root;
     }
-//    public void delete(int key) {
-//
-//    }
+    private void inOrder(Node localRoot) {
+        if(localRoot != null) {
+            inOrder(localRoot.getLeftChild());
+            System.out.print(localRoot.getiData() + " ");
+            inOrder(localRoot.getRightChild());
+        }
+    }
+    public void displayTree() {
+
+    }
+    public void delete(int key) {
+
+    }
 }
