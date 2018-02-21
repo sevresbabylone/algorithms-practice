@@ -11,8 +11,24 @@ public class Tree {
     public Node getRoot() {
         return root;
     }
+    public Node minimum() {
+        Node current;
+        current = root;
+        while (current.getLeftChild() != null) {
+            current = current.getLeftChild();
+        }
+        return current;
+    }
+    public Node maximum() {
+        Node current;
+        current = root;
+        while (current.getRightChild() != null) {
+            current = current.getRightChild();
+        }
+        return current;
+    }
 
-    public Node find(Node root, int key) {
+        public Node find(Node root, int key) {
         if (root == null || root.getiData() == key) {
             return root;
         }
