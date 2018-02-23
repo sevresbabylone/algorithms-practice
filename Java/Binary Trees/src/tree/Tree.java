@@ -66,7 +66,39 @@ public class Tree {
     public void displayTree() {
 
     }
-    public void delete(int key) {
-
+    public boolean delete(int key) {
+        Node current = root;
+        Node parent = root;
+        boolean isLeftChild = false;
+        // search for node
+        while (current.getiData() != key && current != null) {
+            parent = current;
+            if (key < current.getiData()) {
+                isLeftChild = true;
+                current = current.getLeftChild();
+            }
+            else {
+                isLeftChild = false;
+                current = current.getRightChild();
+            }
+        }
+        // node not found in tree
+        if (current == null) {
+            return false;
+        }
+        // CASE 1: Node has no children
+        if (current.getLeftChild() == null && current.getRightChild() == null) {
+            // Only one node in tree
+            if (current == root) {
+                root = null;
+            }
+            else if (isLeftChild) {
+              parent.setLeftChild(null);
+            }
+            else {
+                parent.setRightChild(null);
+            }
+        }
+        return true;
     }
 }
