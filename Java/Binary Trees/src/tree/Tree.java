@@ -100,6 +100,8 @@ public class Tree {
             }
         }
         // CASE 2: Node has 1 child
+        // // -> Node is left child of parent, it has 1 child on the left
+        // // -> Node is left child of parent, it has 1 child on the right
         else if (current.getRightChild() == null) {
             if (current == root) {
                 root = current.getLeftChild();
@@ -111,6 +113,8 @@ public class Tree {
                 parent.setRightChild(current.getLeftChild());
             }
         }
+        // // -> Node is right child of parent, it has 1 child on the left
+        // // -> Node is right child of parent, it has 1 child on the right
         else if (current.getLeftChild() == null) {
             if (current == root) {
                 root = current.getRightChild();
@@ -122,8 +126,49 @@ public class Tree {
                 parent.setRightChild(current.getRightChild());
             }
         }
-
         // CASE 3: Node has 2 children
+        else {
+            // Find the smallest of the set of nodes that are larger than the original node
+
+            // Parent's rightChild now points to successor
+            // Successor takes deleteNode's leftChild and rightChild
+            // -> Successor has a right child
+            // Successor's parent's leftChild now points to successorRightChild
+            Node successor = getSuccessor(current);
+            if (current == root) {
+                root = successor;
+            }
+            else if (isLeftChild) {
+                parent.setLeftChild(successor);
+            }
+            else {
+                parent.setRightChild(successor);
+            }
+            // -> Successor is left descendant of rightChild of deleteNode
+            // successor's parent's leftChild = rightChild of successor
+            successor.setLeftChild(current.getLeftChild());
+        }
         return true;
     }
+    // TODO : Recursive solution for delete
+    public boolean deleteRec(int key) {
+        return true;
+    }
+    public Node getSuccessor(Node deleteNode) {
+        Node successorParent = deleteNode;
+        Node successor = deleteNode.getRightChild();
+        while (successor.getLeftChild() != null) {
+            successorParent = successor;
+            successor = successor.getLeftChild();
+        }
+        // if successor is not the rightChild (i.e. immediate child) of deleteNode,
+        // // then the descendants of successor (only rightChildren) become leftChild of successorParent
+        if (successor != deleteNode.getRightChild()) {
+            successorParent.setLeftChild(successor.getRightChild());
+            // successor takes over deleteNodes rightChildren
+            successor.setRightChild(deleteNode.getRightChild());
+        }
+        return successor;
+    }
+
 }
