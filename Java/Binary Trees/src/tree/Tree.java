@@ -151,7 +151,8 @@ public class Tree {
         return true;
     }
     // TODO : Recursive solution for delete
-    public boolean deleteRec(int key) {
+    public boolean deleteRecursive(int key) {
+        // base case
         return true;
     }
     public Node getSuccessor(Node deleteNode) {
