@@ -13,5 +13,6 @@ public class HeapApp {
         heap1.insert(30);
         heap1.insert(10);
         heap1.insert(90);
+        heap1.displayHeap();
     }
 }
