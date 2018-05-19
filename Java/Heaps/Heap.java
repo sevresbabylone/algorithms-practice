@@ -24,21 +24,59 @@ public class Heap {
     }
     public void trickleUp(int index) {
         int parent = (index - 1) / 2;
+
         Node bottom = heapArray[index];
         // keep moving parent nodes down while parent is less than inserted node OR have reached the top node
-        while (index > 0 && heapArray[index].getKey() < bottom.getKey()) {
+        while (index > 0 && heapArray[parent].getKey() < bottom.getKey()) {
+
             heapArray[index] = heapArray[parent];
             index = parent;
             parent = (parent - 1) / 2;
         }
         heapArray[index] = bottom;
     }
-//    public Node remove() {
-//
-//    }
-    public void trickleDown(int index) {
-
+    public Node remove() {
+    // detach root, reattach last node and then trickle down
+        Node root = heapArray[0];
+        heapArray[0] = heapArray[--currentSize];
+        trickleDown(0);
+        return root;
     }
+    public void trickleDown(int index) {
+        int largerChild;
+        Node top = heapArray[index]; // save root
+        while (index < currentSize / 2 ) { // while not on bottom row
+            int leftChildIndex = (2 * index) + 1;
+            int rightChildIndex = (2 * index) + 2;
+            if (rightChildIndex < currentSize) { // if right child exists
+                largerChild = (heapArray[leftChildIndex].getKey() > heapArray[rightChildIndex].getKey()) ? leftChildIndex : rightChildIndex;
+            }
+            else {
+                largerChild = leftChildIndex;
+            }
+            if (top.getKey() >= heapArray[largerChild].getKey()) {
+                break;
+            }
+            heapArray[index] = heapArray[largerChild]; // move largerChild up
+            index = largerChild;
+        }
+        heapArray[index] = top;
+    }
+    // method that changes the priority (iData) of a node and trickles it up or down to its correct position
+     public boolean change(int index, int newValue) {
+        if (index < 0 || index >= currentSize) { // if index invalid, return false
+            return false;
+        }
+        int oldValue = heapArray[index].getKey(); // record old value
+         heapArray[index].setKey(newValue);
+          if (oldValue > newValue) {
+            trickleDown(index);
+          }
+          else {
+              trickleUp(index);
+          }
+        return true;
+     }
     public void displayHeap() {
         System.out.print("heapArray:");
         for (int m = 0; m < currentSize; m++) {
@@ -77,5 +115,6 @@ public class Heap {
                 }
             }
         }
+        System.out.println('\n');
     }
 }
