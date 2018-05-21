@@ -1,4 +1,4 @@
-// Array-based heap
+//Array based heap
 
 public class Heap {
     private Node[] heapArray;
@@ -36,7 +36,7 @@ public class Heap {
         heapArray[index] = bottom;
     }
     public Node remove() {
-    // detach root, reattach last node and then trickle down
+        // detach root, reattach last node and then trickle down
         Node root = heapArray[0];
         heapArray[0] = heapArray[--currentSize];
         trickleDown(0);
@@ -63,20 +63,20 @@ public class Heap {
         heapArray[index] = top;
     }
     // method that changes the priority (iData) of a node and trickles it up or down to its correct position
-     public boolean change(int index, int newValue) {
+    public boolean change(int index, int newValue) {
         if (index < 0 || index >= currentSize) { // if index invalid, return false
             return false;
         }
         int oldValue = heapArray[index].getKey(); // record old value
-         heapArray[index].setKey(newValue);
-          if (oldValue > newValue) {
+        heapArray[index].setKey(newValue);
+        if (oldValue > newValue) {
             trickleDown(index);
-          }
-          else {
-              trickleUp(index);
-          }
+        }
+        else {
+            trickleUp(index);
+        }
         return true;
-     }
+    }
     public void displayHeap() {
         System.out.print("heapArray:");
         for (int m = 0; m < currentSize; m++) {
@@ -117,4 +117,11 @@ public class Heap {
         }
         System.out.println('\n');
     }
+    public void incrementSize() {
+        currentSize++;
+    }
+    public void insertAt(int index, Node newNode) {
+        heapArray[index] = newNode;
+    }
+
 }
