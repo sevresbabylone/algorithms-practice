@@ -1,4 +1,4 @@
-//Array based heap
+// Array based heap
 
 public class Heap {
     private Node[] heapArray;
@@ -123,5 +123,11 @@ public class Heap {
     public void insertAt(int index, Node newNode) {
         heapArray[index] = newNode;
     }
-
+    public void heapify(int index) {
+        if (index > currentSize / 2 - 1) return; // if node has no children, return
+        heapify(index * 2 + 2); // turn right subtree into heap
+        heapify(index * 2 + 1); // turn left subtree into heap
+        trickleDown(index); // apply trickleDown to current node
+    }
 }
+
