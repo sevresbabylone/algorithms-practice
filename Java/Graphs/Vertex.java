@@ -1,7 +1,7 @@
 public class Vertex {
     public char label;
     public boolean visited;
-    public Vertez(char l) {
+    public Vertex(char l) {
         label = l;
         visited = false;
     }
