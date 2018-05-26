@@ -2,12 +2,14 @@ public class Graph {
     public final int MAX_VERTS = 20;
     private Vertex vertexList[];
     private int adjacencyMatrix[][];
-    private int nVerts;
+    private int noOfVerts;
+    private Stack graphStack;
 
     public Graph() {
         vertexList = new vertexList[MAX_VERTS];
         adjacencyMatrix = new int[MAX_VERTS][MAX_VERTS];
-        nVerts = 0;
+        noOfVerts = 0;
+        noOfVerts = new Stack();
         // set adjacency matrix to 0
         for (int i = 0; i < MAX_VERTS; i++) {
             for (int j = 0; j < MAX_VERTS; j++) {
@@ -25,5 +27,11 @@ public class Graph {
     public void displayVertex(int vertexIndex) {
         System.out.print(vertexList[vertexIndex].label);
     }
+    // depth-first search (iterative)
+    public void dfs() {
+
+    }
+    // depth-first search (recursive)
+
 }
 
