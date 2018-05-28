@@ -10,7 +10,7 @@ public class Graph {
         adjacencyMatrix = new int[MAX_VERTS][MAX_VERTS];
         noOfVerts = 0;
         indexStack = new Stack(20);
-        // set adjacency matrix to 0
+        // set initial adjacency matrix to 0
         for (int i = 0; i < MAX_VERTS; i++) {
             for (int j = 0; j < MAX_VERTS; j++) {
                 adjacencyMatrix[i][j] = 0;
@@ -32,7 +32,8 @@ public class Graph {
         vertexList[0].visited = true;
         displayVertex(0);
         indexStack.push(0);
-        while (!indexStack.isEmpty()) {
+        while (!indexStack.isEmpty()) { // until stack empty
+            // get an unvisited vertex adjacent to stack top
             int v = getUnvisitedAdjacentVertex(indexStack.peek());
             if (v == -1) { // if no such vertex in indexStack
                 indexStack.pop();

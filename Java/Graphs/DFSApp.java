@@ -32,7 +32,7 @@ public class DFSApp {
         dfsGraph.addEdge(1, 0);
         dfsGraph.addEdge(1, 5);
         // c
-        dfsGraph.addEdge(2, 1);
+        dfsGraph.addEdge(2, 0);
         // d
         dfsGraph.addEdge(3, 0);
         dfsGraph.addEdge(3, 6);
@@ -42,11 +42,15 @@ public class DFSApp {
         dfsGraph.addEdge(5, 1);
         dfsGraph.addEdge(5, 7);
         // g
-        dfsGraph.addEdge(6, 5);
+        dfsGraph.addEdge(3, 8);
+        dfsGraph.addEdge(6, 8);
         // h
-        dfsGraph.addEdge(7, 6);
+        dfsGraph.addEdge(7, 5);
+        // i
+        dfsGraph.addEdge(8, 6);
 
         System.out.print("Depth-first Search order: ");
         dfsGraph.dfs();
+        // Expected output => abfhcdgie
     }
 }
