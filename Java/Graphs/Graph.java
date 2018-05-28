@@ -1,15 +1,21 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 public class Graph {
     public final int MAX_VERTS = 20;
     private Vertex vertexList[];
     private int adjacencyMatrix[][];
     private int noOfVerts;
-    private Stack indexStack;
+    private Stack<Integer> indexStack;
+    private Queue<Integer> indexQueue;
 
     public Graph() {
         vertexList = new Vertex[MAX_VERTS];
         adjacencyMatrix = new int[MAX_VERTS][MAX_VERTS];
         noOfVerts = 0;
-        indexStack = new Stack(20);
+        indexStack = new Stack<Integer>();
+        indexQueue = new LinkedList<Integer>();
         // set initial adjacency matrix to 0
         for (int i = 0; i < MAX_VERTS; i++) {
             for (int j = 0; j < MAX_VERTS; j++) {
@@ -35,7 +41,7 @@ public class Graph {
         while (!indexStack.isEmpty()) { // until stack empty
             // get an unvisited vertex adjacent to stack top
             int v = getUnvisitedAdjacentVertex(indexStack.peek());
-            if (v == -1) { // if no such vertex in indexStack
+            if (v == -1) { // if no such vertex in indexStack, pop top off
                 indexStack.pop();
             }
             else {
@@ -44,11 +50,13 @@ public class Graph {
                 indexStack.push(v);
             }
         }
+        System.out.println();
         // reset all flags
         for (int j = 0; j < noOfVerts; j++) {
             vertexList[j].visited = false;
         }
     }
+
     public int getUnvisitedAdjacentVertex(int v) {
         for (int j = 0; j < noOfVerts; j++) {
             if (adjacencyMatrix[v][j] == 1 && vertexList[j].visited == false) {
@@ -57,7 +65,30 @@ public class Graph {
         }
         return - 1;
     }
-    // depth-first search (recursive)
+    // Stay as close as possible to the starting point
+    // visit next unvisited vertex that is adjacent to the current vertex, mark it, and insert it into the queue
+    // else remove a vertex from the queue (if possible) and make it the current vertex
+    // if queue is empty, end
+
+    public void bfs() {
+        int currentVertex = 0;
+        int adjacentVertex;
+        indexQueue.add(currentVertex);
+        vertexList[0].visited = true;
+        displayVertex(0);
+        while (!indexQueue.isEmpty()) {
+            currentVertex = indexQueue.remove();
+            while ((adjacentVertex = getUnvisitedAdjacentVertex(currentVertex)) != -1) {
+                vertexList[adjacentVertex].visited = true;
+                displayVertex(adjacentVertex);
+                indexQueue.add(adjacentVertex);
+            }
+        }
+        // reset all flags
+        for (int j = 0; j < noOfVerts; j++) {
+            vertexList[j].visited = false;
+        }
+        System.out.println();
+    }
 
 }
-
