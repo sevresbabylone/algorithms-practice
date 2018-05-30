@@ -90,5 +90,28 @@ public class Graph {
         }
         System.out.println();
     }
+    // minimum spanning tree (depth-first)
+    public void mst() {
+        vertexList[0].visited = true;
+        indexStack.push(0);
+        while (!indexStack.isEmpty()) {
+            int currentVertex = indexStack.peek();
+            int v = getUnvisitedAdjacentVertex(currentVertex);
+            if (v == -1) {
+                indexStack.pop();
+            }
+            else {
+                vertexList[v].visited = true;
+                indexStack.push(v);
+                displayVertex(currentVertex);
+                displayVertex(v);
+                System.out.print(" ");
+            }
+        }
+        // reset all flags
+        for (int j = 0; j < noOfVerts; j++) {
+            vertexList[j].visited = false;
+        }
+    }
 
 }

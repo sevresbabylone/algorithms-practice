@@ -55,6 +55,7 @@ public class GraphTraversalApp {
             System.out.print("Breadth-first Search order: ");
             gtGraph.bfs();
             // Expected output => abcdefghi
+            gtGraph.mst();
         }
 }
 
