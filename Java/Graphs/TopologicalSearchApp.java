@@ -9,6 +9,17 @@
 //G   0 0 0 0 0 0 0 1
 //H   0 0 0 0 0 0 0 0
 
+// Adjacency Matrix of nonDAGGraph (non DAG) A -> B -> D -> E -> A
+//    A B C D E F G H
+//A   0 0 0 1 0 0 0 0
+//B   1 0 0 0 0 0 0 0
+//C   0 0 0 0 0 0 0 0
+//D   0 0 0 0 1 0 0 0
+//E   0 1 0 0 0 0 0 0
+//F   0 0 0 0 0 0 0 0
+//G   0 0 0 0 0 0 0 0
+//H   0 0 0 0 0 0 0 0
+
 public class TopologicalSearchApp {
     public static void main(String[] args) {
         DirectedGraph tsGraph = new DirectedGraph();
@@ -39,5 +50,21 @@ public class TopologicalSearchApp {
         tsGraph.topologicalSortRecur();
         // h => no successors
         // Expected output => Topologically sorted order: BAEDGCFH
+
+        DirectedGraph nonDAGGraph = new DirectedGraph();
+        nonDAGGraph.addVertex('a');
+        nonDAGGraph.addVertex('b');
+        nonDAGGraph.addVertex('d');
+        nonDAGGraph.addVertex('e');
+        // a
+        nonDAGGraph.addEdge(0, 3);
+        // b
+        nonDAGGraph.addEdge(1, 0);
+        // d
+        nonDAGGraph.addEdge(3, 4);
+        // e
+        nonDAGGraph.addEdge(4, 1);
+        nonDAGGraph.topologicalSortRecur();
+        // Expected output => ERROR: Graph has cycles
     }
 }
