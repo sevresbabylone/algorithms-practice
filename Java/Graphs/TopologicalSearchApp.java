@@ -9,7 +9,7 @@
 //G   0 0 0 0 0 0 0 1
 //H   0 0 0 0 0 0 0 0
 
-// Adjacency Matrix of nonDAGGraph (non DAG) A -> B -> D -> E -> A
+// Adjacency Matrix of nonDAGGraph (non DAG) A -> D -> E -> B -> A
 //    A B C D E F G H
 //A   0 0 0 1 0 0 0 0
 //B   1 0 0 0 0 0 0 0
@@ -50,10 +50,11 @@ public class TopologicalSearchApp {
         tsGraph.topologicalSortRecur();
         // h => no successors
         // Expected output => Topologically sorted order: BAEDGCFH
-
+        System.out.println();
         DirectedGraph nonDAGGraph = new DirectedGraph();
         nonDAGGraph.addVertex('a');
         nonDAGGraph.addVertex('b');
+        nonDAGGraph.addVertex('c');
         nonDAGGraph.addVertex('d');
         nonDAGGraph.addVertex('e');
         // a

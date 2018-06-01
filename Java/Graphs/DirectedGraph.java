@@ -45,7 +45,7 @@ public class DirectedGraph {
             removed[i] = false;
         }
         for (int j = 0; j < noOfVerts; j++) {
-            if (vertexList[j].visited == false) {
+            if (removed[j] == false) {
                 topologicalSortUtil(j, removed, topologicalStack);
             }
         }
@@ -54,11 +54,6 @@ public class DirectedGraph {
         while(!topologicalStack.isEmpty()) {
          System.out.print(topologicalStack.pop());
         }
-        // reset all flags
-        for (int j = 0; j < noOfVerts; j++) {
-            vertexList[j].visited = false;
-        }
-        System.out.println();
     }
 
     public void topologicalSortUtil(int currentVertex, boolean[] removed, Stack topologicalStack) {
@@ -66,18 +61,18 @@ public class DirectedGraph {
         vertexList[currentVertex].visited = true;
         // Recur for each adjacent unvisited vertex
         // Push current vertex to stack that stores result
-        while ((adjacentVertex = getUnvisitedAdjacentVertex(currentVertex)) != -1) {
-            if (removed[adjacentVertex] == true) {
-                System.out.println("ERROR: Graph has cycles");
-                break;
-            }
+
+        while ((adjacentVertex = getUnvisitedAdjacentVertex(currentVertex, removed)) != -1) {
             topologicalSortUtil(adjacentVertex, removed, topologicalStack);
         }
         topologicalStack.push(vertexList[currentVertex].label);
         removed[currentVertex] = true;
     }
-    public int getUnvisitedAdjacentVertex(int currentVertex) {
+    public int getUnvisitedAdjacentVertex(int currentVertex,  boolean[] removed) {
         for (int i = 0; i < noOfVerts; i++) {
+            if (adjacencyMatrix[currentVertex][i] == 1 && vertexList[i].visited && removed[i] == false) {
+                System.out.println("ERROR: Graph has cycles");
+            }
             if (adjacencyMatrix[currentVertex][i] == 1 && vertexList[i].visited == false) {
                 return i;
             }
