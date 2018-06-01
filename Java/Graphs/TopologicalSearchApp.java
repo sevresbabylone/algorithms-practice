@@ -36,6 +36,8 @@ public class TopologicalSearchApp {
         tsGraph.addEdge(5, 7);
         // g
         tsGraph.addEdge(6, 7);
+        tsGraph.topologicalSortRecur();
         // h => no successors
+        // Expected output => Topologically sorted order: BAEDGCFH
     }
 }
