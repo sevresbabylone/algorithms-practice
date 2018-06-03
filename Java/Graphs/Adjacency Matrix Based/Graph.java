@@ -113,5 +113,12 @@ public class Graph {
             vertexList[j].visited = false;
         }
     }
+    // minimum spanning tree (breadth-first)
+    public void mstbf() {
+        int currentVertex;
+        int adjacentVertex;
+        vertexList[0].visited = true;
+        indexQueue.add(0);
+    }
 
 }

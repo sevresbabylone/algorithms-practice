@@ -1,14 +1,15 @@
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Stack;
 
 public class DirectedGraph {
+    public class GraphCycleException extends Exception {
+
+    }
+
     public final int MAX_VERTS = 20;
     private Vertex vertexList[];
     private int adjacencyMatrix[][];
     private int noOfVerts;
-    private Stack<Integer> indexStack;
-    private Queue<Integer> indexQueue;
 
     public DirectedGraph() {
         vertexList = new Vertex[MAX_VERTS];
@@ -29,25 +30,32 @@ public class DirectedGraph {
     public void addEdge(int start, int end) {
         adjacencyMatrix[start][end] = 1;
     }
+    // Topological Search
     // Step 1: Find a vertex that has no successors
     // Step 2: Remove this vertex from the graph, and insert its label at the beginning of a list.
 
     // Repeat Steps 1 and 2 until all the vertices are gone.
     // At this point, the list shows the vertices arranged in topological order.
     // Throw error if not an directed acyclic graph (i.e. no cycles)
+
     public void topologicalSortRecur() {
         boolean removed[] = new boolean[noOfVerts];
 
         Stack<Integer> topologicalStack = new Stack<Integer>();
 
-        // mark all vertices as not removed, not processed
+        // mark all vertices as not removed
         for (int i = 0; i < noOfVerts; i++) {
             removed[i] = false;
         }
-        for (int j = 0; j < noOfVerts; j++) {
-            if (removed[j] == false) {
-                topologicalSortUtil(j, removed, topologicalStack);
+        try {
+            for (int j = 0; j < noOfVerts; j++) {
+                if (removed[j] == false) {
+                    topologicalSortUtil(j, removed, topologicalStack);
+                }
             }
+        } catch (GraphCycleException ex) {
+            System.out.println("ERROR: Graph has cycles");
+            return;
         }
 
         System.out.print("Topologically sorted order: ");
@@ -56,7 +64,7 @@ public class DirectedGraph {
         }
     }
 
-    public void topologicalSortUtil(int currentVertex, boolean[] removed, Stack topologicalStack) {
+    public void topologicalSortUtil(int currentVertex, boolean[] removed, Stack topologicalStack) throws GraphCycleException {
         int adjacentVertex;
         vertexList[currentVertex].visited = true;
         // Recur for each adjacent unvisited vertex
@@ -68,10 +76,10 @@ public class DirectedGraph {
         topologicalStack.push(vertexList[currentVertex].label);
         removed[currentVertex] = true;
     }
-    public int getUnvisitedAdjacentVertex(int currentVertex,  boolean[] removed) {
+    public int getUnvisitedAdjacentVertex(int currentVertex,  boolean[] removed) throws GraphCycleException {
         for (int i = 0; i < noOfVerts; i++) {
             if (adjacencyMatrix[currentVertex][i] == 1 && vertexList[i].visited && removed[i] == false) {
-                System.out.println("ERROR: Graph has cycles");
+                throw new GraphCycleException();
             }
             if (adjacencyMatrix[currentVertex][i] == 1 && vertexList[i].visited == false) {
                 return i;
