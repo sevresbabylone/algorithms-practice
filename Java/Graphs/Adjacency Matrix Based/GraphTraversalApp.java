@@ -56,6 +56,10 @@ public class GraphTraversalApp {
             gtGraph.bfs();
             // Expected output => abcdefghi
             gtGraph.mst();
+            // Expected output => ab bf fh ac ad dg gi ae
+            System.out.println();
+            gtGraph.mstbf();
+            // Expected output =>  ab ac ad ae bf fh dg gi
         }
 }
 

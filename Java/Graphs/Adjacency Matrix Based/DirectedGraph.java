@@ -15,8 +15,6 @@ public class DirectedGraph {
         vertexList = new Vertex[MAX_VERTS];
         adjacencyMatrix = new int[MAX_VERTS][MAX_VERTS];
         noOfVerts = 0;
-        indexStack = new Stack<Integer>();
-        indexQueue = new LinkedList<Integer>();
         // set initial adjacency matrix to 0
         for (int i = 0; i < MAX_VERTS; i++) {
             for (int j = 0; j < MAX_VERTS; j++) {
@@ -60,7 +58,7 @@ public class DirectedGraph {
 
         System.out.print("Topologically sorted order: ");
         while(!topologicalStack.isEmpty()) {
-         System.out.print(topologicalStack.pop());
+            System.out.print(topologicalStack.pop());
         }
     }
 
@@ -88,4 +86,3 @@ public class DirectedGraph {
         return -1;
     }
 }
-

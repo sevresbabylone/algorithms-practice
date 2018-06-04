@@ -115,10 +115,20 @@ public class Graph {
     }
     // minimum spanning tree (breadth-first)
     public void mstbf() {
-        int currentVertex;
+        int currentVertex = 0;
         int adjacentVertex;
-        vertexList[0].visited = true;
-        indexQueue.add(0);
+        vertexList[currentVertex].visited = true;
+        indexQueue.add(currentVertex);
+        while(!indexQueue.isEmpty()) {
+            currentVertex = indexQueue.remove();
+            while ((adjacentVertex = getUnvisitedAdjacentVertex(currentVertex)) != -1) {
+                vertexList[adjacentVertex].visited = true;
+                displayVertex(currentVertex);
+                displayVertex(adjacentVertex);
+                System.out.print(" ");
+                indexQueue.add(adjacentVertex);
+            }
+        }
     }
 
 }
