@@ -1,9 +1,9 @@
 # Programming Projects
 
 ## Graphs
-- Modify the mst() method of Graph class to find the minimum spanning tree using breadth-first search, rather than depth-first search. In main(), create a graph with 9 vertices and 12 edges and find its minimum spanning tree ([Solution](https://github.com/sevresbabylone/data-structures-in-java/blob/master/Java/Graphs/Adjacency%20Matrix%20Based/Graph.java))
+- Modify the mst() method of Graph class to find the minimum spanning tree using breadth-first search, rather than depth-first search. In main(), create a graph with 9 vertices and 12 edges and find its minimum spanning tree ([Solution](./blob/master/Graphs/Adjacency%20Matrix%20Based/Graph.java))
 
-- Modify Graph class to use adjacency lists rather than an adjacency matrix. (Hint: Use Linked lists)
+- Modify Graph class to use adjacency lists rather than an adjacency matrix. ([Solution](./blob/master/Graphs/Adjacency%20Matrix%20Based/Graph.java))
 
 - Create a method to display a connectivity table for a directed graph
 
