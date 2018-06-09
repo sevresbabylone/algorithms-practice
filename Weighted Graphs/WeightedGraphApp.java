@@ -20,6 +20,22 @@ public class WeightedGraphApp {
         wgGraph.addVertex("Evry");
         wgGraph.addVertex("Fontan");
 
+        // Abbeville
+        wgGraph.addEdge(0, 1, 6);
+        wgGraph.addEdge(0, 3, 4);
+        // Bordeaux
+        wgGraph.addEdge(1, 2, 10);
+        wgGraph.addEdge(1, 3, 7);
+        wgGraph.addEdge(1, 4, 7);
+        // Cannes
+        wgGraph.addEdge(2, 3, 8);
+        wgGraph.addEdge(2, 4, 5);
+        wgGraph.addEdge(2, 5, 6);
+        // Dijon
+        wgGraph.addEdge(3, 4, 12);
+        // Evry
+        wgGraph.addEdge(4, 5, 7);
+
         // Expected result -> Abbeville-Dijon, Abbeville-Bordeaux, Bordeaux-Evry, Evry-Cannes, Cannes-Fontan
     }
 }
