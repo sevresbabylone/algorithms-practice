@@ -36,25 +36,31 @@ public class WeightedGraph {
         EdgePriorityQueue edgeQueue = new EdgePriorityQueue();
         int currentVertex = 0;
         int noOfVertsInTree = 0;
-        while (noOfVertsInTree < noOfVerts) {
+        while (noOfVertsInTree < noOfVerts - 1) {
             // put current vertex in tree
+//            System.out.print(vertexList[currentVertex].label);
             vertexList[currentVertex].isInTree = true;
             noOfVertsInTree++;
 
+            // insert edges adjacent to currentVert into edgeQueue
             for (int j = 0; j < noOfVerts; j++) {
-                if (vertexList[j].isInTree) continue;
+                if (j == currentVertex) continue;
+                if(vertexList[j].isInTree) continue;
                 int weight = adjacencyMatrix[currentVertex][j];
                 if (weight == INFINITY) continue; // skip if no edge
                 putInEdgeQueue(edgeQueue, new Edge(currentVertex, j, weight));
             }
             Edge cheapestEdge = edgeQueue.removeMinimum();
-            vertexList[cheapestEdge.destination].isInTree = true;
-            noOfVertsInTree++;
             System.out.print(vertexList[cheapestEdge.source].label + "->");
             System.out.print(vertexList[cheapestEdge.destination].label + " ");
+//            System.out.print(vertexList[edgeQueue.peekMinimum().source].label);
+//            System.out.print(vertexList[edgeQueue.peekMinimum().destination].label);
             currentVertex = cheapestEdge.destination;
         }
         // add all edges adjacent to currentVertex into edgeQueue
+        // mst is complete
+        for(int j = 0; j < noOfVerts; j++) // unmark vertices
+            vertexList[j].isInTree = false;  // end mstw
     }
     // Look for other edges in the Edge queue that are also pointing towards same vertex as newEdge and replace it if newEdge is cheaper
     // Then insert newEdge into Edge queue
@@ -63,9 +69,9 @@ public class WeightedGraph {
         if ( sameDestinationVertexIndex == -1) {
             edgeQueue.insert(newEdge);
         }
-        else if (edgeQueue.getEdgeAtN(sameDestinationVertexIndex).weight > newEdge.weight) {
-                edgeQueue.removeN(sameDestinationVertexIndex);
-                edgeQueue.insert(newEdge);
+        else if (edgeQueue.peekN(sameDestinationVertexIndex).weight > newEdge.weight) {
+            edgeQueue.removeN(sameDestinationVertexIndex);
+            edgeQueue.insert(newEdge);
         }
     }
 }

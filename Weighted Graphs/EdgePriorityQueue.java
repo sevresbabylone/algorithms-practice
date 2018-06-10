@@ -12,7 +12,7 @@ public class EdgePriorityQueue {
             if (item.weight >= queueArray[i].weight) {
                 break; }
         }
-        for (int j = size - 1; j > i; j--) {
+        for (int j = size - 1; j >= i; j--) {
             queueArray[j+1] = queueArray[j];
         }
         queueArray[i] = item;
@@ -41,7 +41,7 @@ public class EdgePriorityQueue {
         }
         return -1;
     }
-    public Edge getEdgeAtN(int n) {
+    public Edge peekN(int n) {
         return queueArray[n];
     }
 }
