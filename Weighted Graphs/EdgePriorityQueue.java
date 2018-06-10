@@ -41,4 +41,7 @@ public class EdgePriorityQueue {
         }
         return -1;
     }
+    public Edge getEdgeAtN(int n) {
+        return queueArray[n];
+    }
 }
