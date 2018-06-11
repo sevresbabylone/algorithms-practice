@@ -37,8 +37,6 @@ public class WeightedGraph {
         int currentVertex = 0;
         int noOfVertsInTree = 0;
         while (noOfVertsInTree < noOfVerts - 1) {
-            // put current vertex in tree
-//            System.out.print(vertexList[currentVertex].label);
             vertexList[currentVertex].isInTree = true;
             noOfVertsInTree++;
 
@@ -53,14 +51,12 @@ public class WeightedGraph {
             Edge cheapestEdge = edgeQueue.removeMinimum();
             System.out.print(vertexList[cheapestEdge.source].label + "->");
             System.out.print(vertexList[cheapestEdge.destination].label + " ");
-//            System.out.print(vertexList[edgeQueue.peekMinimum().source].label);
-//            System.out.print(vertexList[edgeQueue.peekMinimum().destination].label);
             currentVertex = cheapestEdge.destination;
         }
         // add all edges adjacent to currentVertex into edgeQueue
-        // mst is complete
-        for(int j = 0; j < noOfVerts; j++) // unmark vertices
-            vertexList[j].isInTree = false;  // end mstw
+        // reset isInTree flags
+        for(int j = 0; j < noOfVerts; j++)
+            vertexList[j].isInTree = false;
     }
     // Look for other edges in the Edge queue that are also pointing towards same vertex as newEdge and replace it if newEdge is cheaper
     // Then insert newEdge into Edge queue
