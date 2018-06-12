@@ -35,6 +35,7 @@ public class WeightedGraphApp {
         wgGraph.addEdge(3, 4, 12);
         // Evry
         wgGraph.addEdge(4, 5, 7);
+        System.out.println("Minimum spanning tree for Weighted Graph:");
         wgGraph.displayMinimumSpanningTree();
         // Expected result -> Abbeville-Dijon, Abbeville-Bordeaux, Bordeaux-Evry, Evry-Cannes, Cannes-Fontan
     }
