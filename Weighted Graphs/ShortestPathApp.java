@@ -28,13 +28,17 @@ public class ShortestPathApp {
         spGraph.addEdge(3, 4, 70);
         // Edogawa
         spGraph.addEdge(4, 1, 50);
-
+        spGraph.shortestPath("Chiyoda", "Itabashi");
+        // Expected Result -> Chiyoda->Edogawa->Bunkyo->Itabashi
+        //                    Expected Cost: $180
+        spGraph.shortestPath("Bunkyo", "Chiyoda");
+        // Expected Result -> Bunkyo->Chiyoda
+        //                    Expected Cost: $60
         spGraph.shortestPath("Adachi", "Itabashi");
         // Expected Result -> Adachi->Itabashi
         //                    Expected Cost: $80
-        spGraph.shortestPath("Adachi", "Edogawa");
-        // Expected Result -> Adachi->Itabashi Itabashi->Chiyoda Chiyoda->Edogawa
+        // Expected Result -> Adachi->Itabashi->Chiyoda->Edogawa
         //                    Expected Cost: $140
-
+ 
     }
 }

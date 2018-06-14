@@ -1,10 +1,8 @@
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class DirectedWeightedGraph {
-    public class UnreachableException extends Exception {
-
-    }
     private final int MAX_VERTS = 20;
     public final int INFINITY = 100000;
     private int noOfVerts;
@@ -37,14 +35,17 @@ public class DirectedWeightedGraph {
 
         Queue<Integer> shortestPathQueue = new LinkedList<Integer>();
         int distanceArray[] = new int[noOfVerts];
+        String pathArray[] = new String[noOfVerts];
         for (int i = 0; i < noOfVerts; i++) {
             distanceArray[i] = INFINITY;
         }
+        pathArray[sourceVertex] = vertexList[sourceVertex].label;
+
         // initialise source to 0
         distanceArray[sourceVertex] = 0;
-        try {
-            while (shortestPathQueue.size() < noOfVerts) {
+            for (int count = 0; count < noOfVerts-1; count++) {
                 int currentVertex = pickMinimum(distanceArray);
+//                System.out.print(vertexList[currentVertex].label);
                 shortestPathQueue.add(currentVertex);
                 vertexList[currentVertex].isInTree = true;
                 // update adjacent vertices in distance array
@@ -53,19 +54,23 @@ public class DirectedWeightedGraph {
                             !vertexList[j].isInTree &&
                             distanceArray[currentVertex] + adjacencyMatrix[currentVertex][j] < distanceArray[j]) {
                         distanceArray[j] = distanceArray[currentVertex] + adjacencyMatrix[currentVertex][j];
+                        pathArray[j] = pathArray[currentVertex];
+                        pathArray[j] += "->" + vertexList[j].label;
                     }
                 }
             }
-        }
-        catch (UnreachableException ex) {
-            System.out.println("ERROR: There are unreachable vertices");
-            return;
-        }
+
         // reset flags
         for (int i = 0; i < noOfVerts; i++) {
             vertexList[i].isInTree = false;
         }
-        System.out.println(distanceArray[destinationVertex]);
+        if (distanceArray[destinationVertex] == INFINITY) {
+           System.out.println("Destination is unreachable from source");
+        }
+        else {
+            System.out.println(pathArray[destinationVertex]);
+            System.out.println("Expected cost: $" + distanceArray[destinationVertex]);
+        }
     }
 
     public int getIndexFromLabel(String label) {
@@ -75,7 +80,7 @@ public class DirectedWeightedGraph {
         }
         return i;
     }
-    public int pickMinimum(int[] distanceArray) throws UnreachableException {
+    public int pickMinimum(int[] distanceArray)  {
         if (distanceArray == null || distanceArray.length == 0) return -1;
         // check not in shortestPathQueue
         int minimum = INFINITY;
@@ -85,9 +90,9 @@ public class DirectedWeightedGraph {
                 minimumIndex = i;
                 minimum = distanceArray[i];
             }
-        if (minimum == INFINITY) {
-            throw new UnreachableException();
-        }
+//        if (minimum == INFINITY) {
+//            throw new UnreachableException();
+//        }
         return minimumIndex;
     }
 }
