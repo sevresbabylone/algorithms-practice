@@ -39,6 +39,6 @@ public class ShortestPathApp {
         //                    Expected Cost: $80
         // Expected Result -> Adachi->Itabashi->Chiyoda->Edogawa
         //                    Expected Cost: $140
- 
+
     }
 }

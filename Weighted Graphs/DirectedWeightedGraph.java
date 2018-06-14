@@ -64,13 +64,15 @@ public class DirectedWeightedGraph {
         for (int i = 0; i < noOfVerts; i++) {
             vertexList[i].isInTree = false;
         }
-        if (distanceArray[destinationVertex] == INFINITY) {
-           System.out.println("Destination is unreachable from source");
-        }
-        else {
-            System.out.println(pathArray[destinationVertex]);
+        System.out.println(pathArray[destinationVertex]);
             System.out.println("Expected cost: $" + distanceArray[destinationVertex]);
+        // display minimum cost table
+        for (int k = 0; k < noOfVerts; k++) {
+            if (distanceArray[k] == INFINITY || distanceArray[k] == 0) continue;
+            System.out.println( vertexList[k].label + ":$" + distanceArray[k]);
         }
+        System.out.println();
+        
     }
 
     public int getIndexFromLabel(String label) {

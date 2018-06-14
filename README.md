@@ -12,7 +12,7 @@
 - The Knight's Tour is an ancient and famous chess puzzle. The object is to move a knight from one square to another on an otherwise empty chess board until it has visited every square exactly once. Write a program that solves this puzzle using a depth-first-search.
 
 ## Weighted Graphs
-- Modify the shortest path program to print a table of the minimum costs to get from any vertex to any other vertex.
+- Modify the shortest path program to print a table of the minimum costs to get from any vertex to any other vertex.([Solution](https://github.com/sevresbabylone/data-structures-in-java/blob/master/Weighted%20Graphs/DirectedWeightedGraph.java))
 
 - Implement Floyd's algorithm
 
