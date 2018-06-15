@@ -68,13 +68,13 @@ public class DirectedGraph {
         // Recur for each adjacent unvisited vertex
         // Push current vertex to stack that stores result
 
-        while ((adjacentVertex = getUnvisitedAdjacentVertex(currentVertex, removed)) != -1) {
+        while ((adjacentVertex = getUnvisitedAdjacentVertexTS(currentVertex, removed)) != -1) {
             topologicalSortUtil(adjacentVertex, removed, topologicalStack);
         }
         topologicalStack.push(vertexList[currentVertex].label);
         removed[currentVertex] = true;
     }
-    public int getUnvisitedAdjacentVertex(int currentVertex,  boolean[] removed) throws GraphCycleException {
+    public int getUnvisitedAdjacentVertexTS(int currentVertex,  boolean[] removed) throws GraphCycleException {
         for (int i = 0; i < noOfVerts; i++) {
             if (adjacencyMatrix[currentVertex][i] == 1 && vertexList[i].visited && removed[i] == false) {
                 throw new GraphCycleException();
@@ -85,4 +85,37 @@ public class DirectedGraph {
         }
         return -1;
     }
+    public void displayVertex(int vertexIndex) {
+        System.out.print(vertexList[vertexIndex].label);
+    }
+    // TODO: Refactor horrible O(N^2)
+    public void displayConnectivityTable() {
+        for (int i = 0; i < noOfVerts; i++) {
+            displayVertex(i);
+            System.out.print(": ");
+            connectivityTableUtil(i);
+            System.out.println();
+            // reset all flags
+            for (int j = 0; j < noOfVerts; j++) {
+                vertexList[j].visited = false;
+            }
+        }
+    }
+    public int getUnvisitedAdjacentVertex(int v) {
+        for (int j = 0; j < noOfVerts; j++) {
+            if (adjacencyMatrix[v][j] == 1 && vertexList[j].visited == false) {
+                return j;
+            }
+        }
+        return - 1;
+    }
+    public void connectivityTableUtil(int currentVertex) {
+        int adjacentVertex;
+        while((adjacentVertex = getUnvisitedAdjacentVertex(currentVertex)) != -1) {
+            displayVertex(adjacentVertex);
+            vertexList[adjacentVertex].visited = true;
+            connectivityTableUtil(adjacentVertex);
+        }
+    }
+
 }

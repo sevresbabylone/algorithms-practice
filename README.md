@@ -5,7 +5,7 @@
 
 - Modify Graph class to use adjacency lists rather than an adjacency matrix. ([Solution](https://github.com/sevresbabylone/data-structures-in-java/blob/master/Graphs/Adjacency%20List%20Based/Graph.java))
 
-- Create a method to display a connectivity table for a directed graph
+- Create a method to display a connectivity table for a directed graph ([Solution](https://github.com/sevresbabylone/data-structures-in-java/blob/master/Graphs/Adjacency%20Matrix%20Based/Graph.java))
 
 - Implement Warshall's algorithm to find the transitive closure for a graph.
 
