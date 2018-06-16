@@ -1,4 +1,3 @@
-import java.util.LinkedList;
 import java.util.Stack;
 
 public class DirectedGraph {
@@ -28,6 +27,7 @@ public class DirectedGraph {
     public void addEdge(int start, int end) {
         adjacencyMatrix[start][end] = 1;
     }
+
     // Topological Search
     // Step 1: Find a vertex that has no successors
     // Step 2: Remove this vertex from the graph, and insert its label at the beginning of a list.
@@ -117,5 +117,43 @@ public class DirectedGraph {
             connectivityTableUtil(adjacentVertex);
         }
     }
+    // Method that implements Warshall's algorithm to find transitive closure of a graph
+    public void displayTransitiveClosure() {
+        int transitiveClosure[][] = new int[noOfVerts][noOfVerts];
+        for (int k = 0; k < noOfVerts; k++) {
+            for (int l = 0; l < noOfVerts; l++) {
+                transitiveClosure[k][l] = adjacencyMatrix[k][l];
+            }
+        }
 
+        // looks at each row y
+        for (int y = 0; y < noOfVerts; y++) {
+            // looks at each cell x, in the row
+            for (int x = 0; x < noOfVerts; x++) {
+                // if there is an edge, in cell, examine each cell in column y, z,
+                for (int z = 0; z < noOfVerts; z++) {
+                    // if there is a 1 in z, there is an edge from z to y, therefore there is a path from z to x
+                    // put a 1 at (x, z)
+                    if (transitiveClosure[x][y] == 1 && transitiveClosure[y][z] == 1) {
+                        transitiveClosure[x][z] = 1;
+
+                    }
+                }
+            }
+        }
+        System.out.print(" ");
+        for (int i = 0; i < noOfVerts; i++) {
+            System.out.print(" " + vertexList[i].label);
+        }
+        System.out.println();
+        for (int j = 0; j < noOfVerts; j++) {
+            System.out.print(vertexList[j].label + " ");
+            for (int k = 0; k < noOfVerts; k++) {
+                System.out.print(transitiveClosure[j][k] + " ");
+            }
+            System.out.println();
+        }
+
+
+    }
 }
