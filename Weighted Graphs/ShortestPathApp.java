@@ -39,6 +39,12 @@ public class ShortestPathApp {
         //                    Expected Cost: $80
         // Expected Result -> Adachi->Itabashi->Chiyoda->Edogawa
         //                    Expected Cost: $140
-
+        spGraph.displayAllPairsShortestPath();
+        // Expected Result
+        // 0 50 100 80 140
+        // - 0 60 90 100
+        // - 90 0 180 40
+        // - 110 20 0 60
+        // - 50 110 140 0
     }
 }

@@ -1,4 +1,3 @@
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -45,7 +44,6 @@ public class DirectedWeightedGraph {
         distanceArray[sourceVertex] = 0;
             for (int count = 0; count < noOfVerts-1; count++) {
                 int currentVertex = pickMinimum(distanceArray);
-//                System.out.print(vertexList[currentVertex].label);
                 shortestPathQueue.add(currentVertex);
                 vertexList[currentVertex].isInTree = true;
                 // update adjacent vertices in distance array
@@ -72,7 +70,7 @@ public class DirectedWeightedGraph {
             System.out.println( vertexList[k].label + ":$" + distanceArray[k]);
         }
         System.out.println();
-        
+
     }
 
     public int getIndexFromLabel(String label) {
@@ -92,9 +90,58 @@ public class DirectedWeightedGraph {
                 minimumIndex = i;
                 minimum = distanceArray[i];
             }
-//        if (minimum == INFINITY) {
-//            throw new UnreachableException();
-//        }
         return minimumIndex;
+    }
+    // Method that implements Floyd's algorithm for a graph
+    // represented using adjacency matrix representation
+    // and displays All-Pairs Shortest Path table
+
+    public void displayAllPairsShortestPath() {
+        int AllPairsShortestPath[][] = new int[noOfVerts][noOfVerts];
+        for (int k = 0; k < noOfVerts; k++) {
+            for (int l = 0; l < noOfVerts; l++) {
+                if (k == l) {
+                    AllPairsShortestPath[k][l] = 0;
+                    continue;
+                }
+                AllPairsShortestPath[k][l] = adjacencyMatrix[k][l];
+            }
+        }
+        // An 'L' shape indicates a path from B to A, from A to C,
+        // therefore, there is an alternative path from  B to C
+        // this direct path is compared to the alternative path and replaced if greater than alternative path
+        // [i][j] > [i][k] + [k][j]
+        //   A B C
+        // A     X
+        // B X X X
+
+        // First loop k is a marker to the top of the L (i.e. row A in this case)
+        // Second loop i is a marker to the bottom of the L (i.e. row B )
+        // Third loop j loops through cells of a column, elongating the L
+        // When the whole board is looped through with all possibilities of 'L's,
+        // we will be left with the all pairs shortest path table
+
+        for (int k = 0; k < noOfVerts; k++) {
+            for (int i = 0; i < noOfVerts; i++) {
+                for (int j = 0; j < noOfVerts; j++) {
+                    if (AllPairsShortestPath[i][j] > AllPairsShortestPath[i][k] + AllPairsShortestPath[k][j]) {
+                        AllPairsShortestPath[i][j] = AllPairsShortestPath[i][k] + AllPairsShortestPath[k][j];
+                    }
+                }
+            }
+        }
+        System.out.println();
+        for (int j = 0; j < noOfVerts; j++) {
+            for (int k = 0; k < noOfVerts; k++) {
+                if (AllPairsShortestPath[j][k] == INFINITY) {
+                    System.out.print("-- ");
+                    continue;
+                }
+                System.out.print(AllPairsShortestPath[j][k] + " ");
+            }
+            System.out.println();
+        }
+
+
     }
 }
