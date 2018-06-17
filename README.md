@@ -14,7 +14,7 @@
 ## Weighted Graphs
 - Modify the shortest path program to print a table of the minimum costs to get from any vertex to any other vertex.([Solution](https://github.com/sevresbabylone/data-structures-in-java/blob/master/Weighted%20Graphs/DirectedWeightedGraph.java))
 
-- Implement Floyd's algorithm
+- Implement Floyd's algorithm. ([Solution](https://github.com/sevresbabylone/data-structures-in-java/blob/master/Weighted%20Graphs/DirectedWeightedGraph.java))
 
 - Implement the traveling salesman problem described in the “Intractable Problems” section in this chapter. In spite of its intractability, it will have no trouble solving the problem for small N, say 10 cities or fewer.
 
