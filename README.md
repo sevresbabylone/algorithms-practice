@@ -1,7 +1,8 @@
 # Programming Projects
 
 ## Heaps
-- Convert the Heap.java class such that it is an ascending heap rather than descending heap.
+- Convert the Heap.java class such that it is an ascending heap rather than descending heap. ([Solution](https://github.com/sevresbabylone/data-structures-in-java/blob/master/Heaps/AscendingHeap.java))
+
 
 - Write a toss() method that places a new node in the heap array without attempting to maintain the heap condition ( Each new item can simply be placed at the end of the array.). Write a restoreHeap() method that restores the heap condition throughout the entire heap. Using toss() repeatedly followed by a single restoreHeap() is more efficient than using insert() repeatedly when a large amount of data must be inserted at one time.
 
