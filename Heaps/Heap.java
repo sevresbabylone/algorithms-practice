@@ -13,6 +13,7 @@ public class Heap {
     public boolean isEmpty() {
         return currentSize == 0;
     }
+
     public boolean insert(int key) {
         if (currentSize == maxSize) {
             return false;
