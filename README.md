@@ -4,7 +4,7 @@
 - Convert the Heap.java class such that it is an ascending heap rather than descending heap. ([Solution](https://github.com/sevresbabylone/data-structures-in-java/blob/master/Heaps/AscendingHeap.java))
 
 
-- Write a toss() method that places a new node in the heap array without attempting to maintain the heap condition ( Each new item can simply be placed at the end of the array.). Write a restoreHeap() method that restores the heap condition throughout the entire heap. Using toss() repeatedly followed by a single restoreHeap() is more efficient than using insert() repeatedly when a large amount of data must be inserted at one time.
+- Write a toss() method that places a new node in the heap array without attempting to maintain the heap condition ( Each new item can simply be placed at the end of the array.). Write a restoreHeap() method that restores the heap condition throughout the entire heap. Using toss() repeatedly followed by a single restoreHeap() is more efficient than using insert() repeatedly when a large amount of data must be inserted at one time. ([Solution](https://github.com/sevresbabylone/data-structures-in-java/blob/master/Heaps/Heap.java))
 
 - Implement a Priority queue  using a heap instead of an array. Make it a descending queue (largest item is removed).
 
