@@ -130,5 +130,13 @@ public class Heap {
         heapify(index * 2 + 1); // turn left subtree into heap
         trickleDown(index); // apply trickleDown to current node
     }
+    public void toss(int key) {
+        Node newNode = new Node(key);
+        heapArray[currentSize++] = newNode;
+    }
+    public void restoreHeap() {
+        for (int j = currentSize / 2 - 1; j >= 0; j--) {
+            trickleDown(j);
+       }
+    }
 }
-

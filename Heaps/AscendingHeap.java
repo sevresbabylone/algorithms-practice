@@ -56,7 +56,7 @@ public class AscendingHeap {
                 smallerChild = leftChildIndex;
             }
             if (top.getKey() <= heapArray[smallerChild].getKey()) {
-               break;
+                break;
             }
             heapArray[index] = heapArray[smallerChild];
             index = smallerChild;
